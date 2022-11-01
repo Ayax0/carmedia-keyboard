@@ -129,7 +129,11 @@ fetch(chrome.runtime.getURL("keyboard.html"))
             "click",
             (event) => {
                 const element = event.target as Element;
-                if (element.tagName.toLowerCase() == "input" && ["text", "password"].includes(element.getAttribute("type"))) {
+                if (
+                    element.tagName.toLowerCase() == "input" &&
+                    element.id != "keyboard-input" &&
+                    ["text", "password"].includes(element.getAttribute("type"))
+                ) {
                     if (!keyboard.classList.contains("active")) keyboard.classList.add("active");
                     targetInput = element as HTMLInputElement;
                     input.value = targetInput.value;
